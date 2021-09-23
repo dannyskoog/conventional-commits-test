@@ -1,0 +1,28 @@
+version: v1
+
+labels:
+  - label: "major"
+    matcher:
+      title: "^feat!: .*"
+      commits: "breaking"
+
+  - label: "minor"
+    matcher:
+      title: "^feat: .*"
+      commits: "^feat: .*"
+
+  - label: "patch"
+    matcher:
+      title: "^fix: .*"
+      commits: "^fix: .*"
+
+checks:
+  - context: "Semantic Pull Request"
+    description:
+      success: Ready for review & merge.
+      failure: Missing semantic label for merge.
+    labels:
+      any:
+        - major
+        - minor
+        - patch
